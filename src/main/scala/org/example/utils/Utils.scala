@@ -3,7 +3,6 @@ package org.example.utils
 import java.lang.reflect.Type
 
 import com.google.gson.{GsonBuilder, JsonElement, JsonObject, JsonSerializationContext, JsonSerializer}
-import org.example.entities.Task
 
 object Utils {
     def mapToJson[A](src: A, map: Map[String, () => String]): String = {
@@ -20,7 +19,7 @@ object Utils {
                 json
             }
         }
-        gsonBuilder.registerTypeAdapter(classOf[Task], serializer)
+        gsonBuilder.registerTypeAdapter(classOf[A], serializer)
 
         val gson = gsonBuilder.create()
         gson.toJson(src)
